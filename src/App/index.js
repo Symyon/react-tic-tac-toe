@@ -15,7 +15,8 @@ class App extends Component {
       moves: [],
       crossActive: true,
       xScore: 0,
-      oScore: 0
+      oScore: 0,
+      winner: -1
     }
 
     this.undo = this.undo.bind(this);
@@ -24,23 +25,66 @@ class App extends Component {
   }
 
   makeMove(index) {
-    const { game, moves, crossActive } = this.state;
-    if (game[index] !== -1) return;
+    const { game, moves, crossActive, winner } = this.state;
+    if (winner !== -1 || game[index] !== -1) return;
 
     moves.push(index);
     game[index] = crossActive ? 1 : 0;
     this.setState({ game, moves, crossActive: !crossActive })
-    if (moves.length === game.length) this.checkGameStatus();
+    if (moves.length >= 3) this.checkGameStatus();
   }
 
   checkGameStatus() {
-    console.log("cehck game")
+    const { game, moves } = this.state;
+
+    //check rows   
+    for (let i = 0; i < 3; i++) {
+      const matchMe = game[i * 3];
+      let j;
+      for (j = 0; j < 3; j++) {
+        const index = i * 3 + j;
+        if (game[index] === -1 || game[index] !== matchMe) break;
+      }
+      if (j === 3) { this.markWinner(matchMe); return; }
+    }
+
+    //check columns
+    for (let i = 0; i < 3; i++) {
+      const matchMe = game[i];
+      let j;
+      for (j = 0; j < 3; j++) {
+        const index = i + j * 3;
+        if (game[index] === -1 || game[index] !== matchMe) break;
+      }
+      if (j === 3) { this.markWinner(matchMe); return; }
+    }
+   
+    //check diagonals
+    for (let i = 0; i < 3; i+=2) {
+      const matchMe = game[i * 3];
+      let j;
+      for(j = 0; j < 3; j++) {
+        const index = Math.abs(i - j) * 3 + j;
+        if (game[index] === -1 || game[index] !== matchMe) break;
+      }
+      if (j === 3) { this.markWinner(matchMe); return; }
+    }
+    
+    if(moves.length === 9) this.markWinner(2);
   }
 
-  undo() {    
-    const { game, moves, crossActive } = this.state;
+  markWinner(matchMe) {
+    let { xScore, oScore } = this.state;
+    if (matchMe === 1) xScore++;
+    else if (matchMe === 0) oScore++;
 
-    if(moves.length === 0) return;
+    this.setState({ winner: matchMe, xScore, oScore })
+  }
+
+  undo() {
+    const { game, moves, crossActive, winner } = this.state;
+
+    if (moves.length === 0 || moves.length === 9 || winner !== -1) return;
     game[moves.pop()] = -1;
     this.setState({ game, moves, crossActive: !crossActive })
   }
@@ -50,7 +94,8 @@ class App extends Component {
     for (let i = 0; i < 9; i++) {
       arr[i] = -1;
     }
-    this.setState({ game: arr })
+
+    this.setState({ game: arr, moves: [], crossActive: true, winner: -1 })
   }
 
 
@@ -66,11 +111,13 @@ class App extends Component {
             <Score text={`X Score: ${this.state.xScore}`} />
             <Score text={`O Score: ${this.state.oScore}`} />
           </div>
+          <span style={{ backgroundColor: 'orange' }}>{this.state.crossActive ? "X Move" : "O Move"}</span>
           <Board game={this.state.game} onClick={this.makeMove} />
           <div style={{ display: 'flex', flex: 1, flexDirection: 'row' }}>
             <Button text='Undo' onClick={this.undo} />
             <Button text='Restart' onClick={this.restart} />
           </div>
+          {this.state.winner !== -1 && <span>Winner is {this.state.winner}</span>}
         </div>
       </div>
     );
