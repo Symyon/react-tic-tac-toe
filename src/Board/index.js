@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import Cell from '../Cell'
 import './index.css';
 
-const cellsArray = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-
 class Board extends Component {
     render() {
+        const { moves, onClick } = this.props;
         return (
             <div className="Board" style={{ display: 'flex', flex: 1, flexWrap: 'wrap', backgroundColor: 'red', width: 400, height: 400, alignSelf: 'center' }}>
-                {
-                    cellsArray.map(item => <Cell key={item} order={item} />)
-                }
+                {moves.map((item, index) => <Cell key={index} index={index} mark={item} onClick={onClick} />)}
             </div>
         );
     }
