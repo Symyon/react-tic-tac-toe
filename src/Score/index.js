@@ -6,7 +6,7 @@ class Score extends Component {
         const {text} = this.props;
 
         return (
-            <div style={{backgroundColor: 'yellow',  width: '100%', padding: 10}}>
+            <div className="Score">
                 {text}
             </div>
         );

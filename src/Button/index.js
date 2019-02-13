@@ -6,8 +6,8 @@ class Button extends Component {
         const { text, onClick } = this.props;
         return (
             <button
-                onClick={onClick}
-                style={{ backgroundColor: 'cyan', width: '100%', padding: 10 }}>
+                className="CustomButton"
+                onClick={onClick}>
                 {text}
             </button>
         );

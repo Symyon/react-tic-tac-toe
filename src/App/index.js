@@ -105,15 +105,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'blue' }}>
+      <div className="App">
         <div>
-          <div style={{ display: 'flex', flex: 1, flexDirection: 'row', width: '100%' }}>
+          <div className="ScoreContainer">
             <Score text={`X Score: ${this.state.xScore}`} />
             <Score text={`O Score: ${this.state.oScore}`} />
           </div>
-          <span style={{ backgroundColor: 'orange' }}>{this.state.crossActive ? "X Move" : "O Move"}</span>
+          <span className="ActivePlayer">{this.state.crossActive ? "X Move" : "O Move"}</span>
           <Board game={this.state.game} onClick={this.makeMove} />
-          <div style={{ display: 'flex', flex: 1, flexDirection: 'row' }}>
+          <div className="ButtonsContainer">
             <Button text='Undo' onClick={this.undo} />
             <Button text='Restart' onClick={this.restart} />
           </div>

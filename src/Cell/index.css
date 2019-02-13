@@ -1,3 +1,9 @@
 .Cell {
+    display: flex;
     cursor: pointer;
+    background-color: green;
+    width: 32%;
+    height: 32%;
+    justify-content: center;
+    align-items: center;
 }

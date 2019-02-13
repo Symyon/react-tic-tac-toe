@@ -1,0 +1,10 @@
+.Board {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: red;
+    width: 20rem;
+    height: 20rem;
+    align-self: center;
+}
