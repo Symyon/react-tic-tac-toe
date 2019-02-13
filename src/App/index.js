@@ -11,8 +11,11 @@ class App extends Component {
     super(props);
 
     this.state = {
+      game: [],
       moves: [],
-      crossActive: true
+      crossActive: true,
+      xScore: 0,
+      oScore: 0
     }
 
     this.undo = this.undo.bind(this);
@@ -21,20 +24,25 @@ class App extends Component {
   }
 
   makeMove(index) {
-    const { moves, crossActive } = this.state;
-    if (moves[index] !== -1) return;
+    const { game, moves, crossActive } = this.state;
+    if (game[index] !== -1) return;
 
-    moves[index] = crossActive ? 1 : 0;
-    this.setState({ moves, crossActive: !crossActive })
-    this.checkGameStatus();
+    moves.push(index);
+    game[index] = crossActive ? 1 : 0;
+    this.setState({ game, moves, crossActive: !crossActive })
+    if (moves.length === game.length) this.checkGameStatus();
   }
 
   checkGameStatus() {
-
+    console.log("cehck game")
   }
 
-  undo() {
+  undo() {    
+    const { game, moves, crossActive } = this.state;
 
+    if(moves.length === 0) return;
+    game[moves.pop()] = -1;
+    this.setState({ game, moves, crossActive: !crossActive })
   }
 
   restart() {
@@ -42,7 +50,7 @@ class App extends Component {
     for (let i = 0; i < 9; i++) {
       arr[i] = -1;
     }
-    this.setState({ moves: arr })
+    this.setState({ game: arr })
   }
 
 
@@ -55,10 +63,10 @@ class App extends Component {
       <div className="App" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'blue' }}>
         <div>
           <div style={{ display: 'flex', flex: 1, flexDirection: 'row', width: '100%' }}>
-            <Score text='X score' />
-            <Score text='O score' />
+            <Score text={`X Score: ${this.state.xScore}`} />
+            <Score text={`O Score: ${this.state.oScore}`} />
           </div>
-          <Board moves={this.state.moves} onClick={this.makeMove} />
+          <Board game={this.state.game} onClick={this.makeMove} />
           <div style={{ display: 'flex', flex: 1, flexDirection: 'row' }}>
             <Button text='Undo' onClick={this.undo} />
             <Button text='Restart' onClick={this.restart} />
