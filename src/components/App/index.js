@@ -4,6 +4,7 @@ import Score from '../Score';
 import Button from '../Button';
 import nought from './img/o.png';
 import cross from './img/x.png';
+import {EMPTY, NOUGHT, CROSS, DRAW} from '../../constants';
 
 import './index.css';
 
@@ -18,7 +19,7 @@ class App extends Component {
       crossActive: true,
       xScore: 0,
       oScore: 0,
-      winner: -1
+      winner: EMPTY
     }
 
     this.undo = this.undo.bind(this);
@@ -28,10 +29,10 @@ class App extends Component {
 
   makeMove(index) {
     const { game, moves, crossActive, winner } = this.state;
-    if (winner !== -1 || game[index] !== -1) return;
+    if (winner !== EMPTY || game[index] !== EMPTY) return;
 
     moves.push(index);
-    game[index] = crossActive ? 1 : 0;
+    game[index] = crossActive ? CROSS : NOUGHT;
     this.setState({ game, moves, crossActive: !crossActive })
     if (moves.length >= 3) this.checkGameStatus();
   }
@@ -45,7 +46,7 @@ class App extends Component {
       let j;
       for (j = 0; j < 3; j++) {
         const index = i * 3 + j;
-        if (game[index] === -1 || game[index] !== matchMe) break;
+        if (game[index] === EMPTY || game[index] !== matchMe) break;
       }
       if (j === 3) { this.markWinner(matchMe); return; }
     }
@@ -56,7 +57,7 @@ class App extends Component {
       let j;
       for (j = 0; j < 3; j++) {
         const index = i + j * 3;
-        if (game[index] === -1 || game[index] !== matchMe) break;
+        if (game[index] === EMPTY || game[index] !== matchMe) break;
       }
       if (j === 3) { this.markWinner(matchMe); return; }
     }
@@ -67,36 +68,36 @@ class App extends Component {
       let j;
       for(j = 0; j < 3; j++) {
         const index = Math.abs(i - j) * 3 + j;
-        if (game[index] === -1 || game[index] !== matchMe) break;
+        if (game[index] === EMPTY || game[index] !== matchMe) break;
       }
       if (j === 3) { this.markWinner(matchMe); return; }
     }
     
-    if(moves.length === 9) this.markWinner(2);
+    if(moves.length === 9) this.markWinner(DRAW);
   }
 
   markWinner(matchMe) {
     let { xScore, oScore } = this.state;
-    if (matchMe === 1) xScore++;
-    else if (matchMe === 0) oScore++;
+    if (matchMe === CROSS) xScore++;
+    else if (matchMe === NOUGHT) oScore++;
 
     this.setState({ winner: matchMe, xScore, oScore })
   }
 
   undo() {
-    const { game, moves, crossActive, winner } = this.state;
+    const { game, moves, crossActive } = this.state;
 
-    game[moves.pop()] = -1;
+    game[moves.pop()] = EMPTY;
     this.setState({ game, moves, crossActive: !crossActive })
   }
 
   restart() {
     let arr = new Array(9);
     for (let i = 0; i < 9; i++) {
-      arr[i] = -1;
+      arr[i] = EMPTY;
     }
 
-    this.setState({ game: arr, moves: [], crossActive: true, winner: -1 })
+    this.setState({ game: arr, moves: [], crossActive: true, winner: EMPTY })
   }
 
 
@@ -107,7 +108,7 @@ class App extends Component {
   render() {
 
     const { moves, winner } = this.state;
-    const isUndo = moves.length !== 0 && moves.length !== 9 && winner === -1;
+    const isUndo = moves.length !== 0 && moves.length !== 9 && winner === EMPTY;
 
     return (
       <div className="App">
@@ -121,7 +122,7 @@ class App extends Component {
             <Button text='Undo' onClick={this.undo} active = {isUndo} />
             <Button text='Restart' onClick={this.restart} active = {true}/>
           </div>
-          {this.state.winner !== -1 && <span>Winner is {this.state.winner}</span>}
+          {this.state.winner !== EMPTY && <span>Winner is {this.state.winner}</span>}
         </div>
       </div>
     );

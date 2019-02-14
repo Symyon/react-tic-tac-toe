@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import nought from './img/o.png';
 import cross from './img/x.png';
+import { NOUGHT, EMPTY } from '../../constants';
 import './index.css';
 
 class Cell extends Component {
@@ -10,7 +11,7 @@ class Cell extends Component {
         return (
             <div className="Cell"
                 onClick={() => onClick(index)}>
-                {mark !== -1 && (mark === 0 ?
+                {mark !== EMPTY && (mark === NOUGHT ?
                     <img src={nought} alt={"O"} style={{ width: '100%', height: '100%' }} /> :
                     <img src={cross} alt={"X"} style={{ width: '100%', height: '100%' }} />)}
             </div>

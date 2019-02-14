@@ -7,7 +7,7 @@ class Score extends Component {
 
         return (
             <div className="Score" style={{ backgroundColor: active ? 'rgb(235, 235, 2)' : 'rgb(131, 131, 1)' }}>
-                <img src={icon} className="Icon"/>
+                <img src={icon} alt='icon' className="Icon"/>
                 {text}
             </div>
         );
