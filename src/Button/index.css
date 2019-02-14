@@ -1,8 +1,6 @@
 .CustomButton {
     width: 100%;
-    background-color: rgb(157, 167, 111);
-    padding: 1rem;
-    cursor: pointer;
+    padding: 1rem;    
     border-radius: 1em;
     margin: 1em;
 }

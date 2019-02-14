@@ -84,7 +84,6 @@ class App extends Component {
   undo() {
     const { game, moves, crossActive, winner } = this.state;
 
-    if (moves.length === 0 || moves.length === 9 || winner !== -1) return;
     game[moves.pop()] = -1;
     this.setState({ game, moves, crossActive: !crossActive })
   }
@@ -104,6 +103,10 @@ class App extends Component {
   }
 
   render() {
+
+    const { moves, winner } = this.state;
+    const isUndo = moves.length !== 0 && moves.length !== 9 && winner === -1;
+
     return (
       <div className="App">
         <div>
@@ -113,8 +116,8 @@ class App extends Component {
           </div>
           <Board game={this.state.game} onClick={this.makeMove} />
           <div className="ButtonsContainer">
-            <Button text='Undo' onClick={this.undo} />
-            <Button text='Restart' onClick={this.restart} />
+            <Button text='Undo' onClick={this.undo} active = {isUndo} />
+            <Button text='Restart' onClick={this.restart} active = {true}/>
           </div>
           {this.state.winner !== -1 && <span>Winner is {this.state.winner}</span>}
         </div>
