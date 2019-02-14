@@ -130,7 +130,6 @@ class App extends Component {
             <Button text='Undo' onClick={this.undo} active={isUndo} />
             <Button text='Restart' onClick={this.restart} active={true} />
           </div>
-          {this.state.winner !== EMPTY && <span>Winner is {this.state.winner}</span>}
         </div>
       </div>
     );
