@@ -1,6 +1,14 @@
 .Score {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     padding: 1rem;
     border-radius: 1em;
     margin: 1em;
+}
+
+.Icon {
+    width: 2em;
+    height: auto;
 }

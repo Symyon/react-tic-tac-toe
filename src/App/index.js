@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Board from '../Board';
 import Score from '../Score';
 import Button from '../Button';
+import nought from './img/o.png';
+import cross from './img/x.png';
 
 import './index.css';
 
@@ -111,8 +113,8 @@ class App extends Component {
       <div className="App">
         <div>
           <div className="ScoreContainer">
-            <Score text={`X Score: ${this.state.xScore}`} active={this.state.crossActive} />
-            <Score text={`O Score: ${this.state.oScore}`} active={!this.state.crossActive}/>
+            <Score icon={cross} text={`Score: ${this.state.xScore}`} active={this.state.crossActive} />
+            <Score icon={nought} text={`Score: ${this.state.oScore}`} active={!this.state.crossActive}/>
           </div>
           <Board game={this.state.game} onClick={this.makeMove} />
           <div className="ButtonsContainer">
