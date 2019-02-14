@@ -1,7 +1,6 @@
 .Cell {
     display: flex;
     cursor: pointer;
-    background-color: rgb(87, 90, 72);
     width: 32%;
     height: 32%;
     justify-content: center;

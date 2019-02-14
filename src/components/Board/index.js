@@ -4,10 +4,10 @@ import './index.css';
 
 class Board extends Component {
     render() {
-        const { game, onClick } = this.props;
+        const { game, onClick, winningCells } = this.props;
         return (
             <div className="Board">
-                {game.map((item, index) => <Cell key={index} index={index} mark={item} onClick={onClick} />)}
+                {game.map((item, index) => <Cell key={index} index={index} mark={item} onClick={onClick} markIt = {winningCells.includes(index)} />)}
             </div>
         );
     }

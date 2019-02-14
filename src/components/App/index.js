@@ -4,7 +4,7 @@ import Score from '../Score';
 import Button from '../Button';
 import nought from './img/o.png';
 import cross from './img/x.png';
-import {EMPTY, NOUGHT, CROSS, DRAW} from '../../constants';
+import { EMPTY, NOUGHT, CROSS, DRAW } from '../../constants';
 
 import './index.css';
 
@@ -19,7 +19,8 @@ class App extends Component {
       crossActive: true,
       xScore: 0,
       oScore: 0,
-      winner: EMPTY
+      winner: EMPTY,
+      winningCells: ''
     }
 
     this.undo = this.undo.bind(this);
@@ -40,48 +41,55 @@ class App extends Component {
   checkGameStatus() {
     const { game, moves } = this.state;
 
+    let winningCells;
     //check rows   
     for (let i = 0; i < 3; i++) {
       const matchMe = game[i * 3];
+      winningCells = '';
       let j;
       for (j = 0; j < 3; j++) {
         const index = i * 3 + j;
         if (game[index] === EMPTY || game[index] !== matchMe) break;
+        winningCells += index;
       }
-      if (j === 3) { this.markWinner(matchMe); return; }
+      if (j === 3) { this.markWinner(matchMe, winningCells); return; }
     }
 
     //check columns
     for (let i = 0; i < 3; i++) {
       const matchMe = game[i];
+      winningCells = '';
       let j;
       for (j = 0; j < 3; j++) {
         const index = i + j * 3;
         if (game[index] === EMPTY || game[index] !== matchMe) break;
+        winningCells += index;
       }
-      if (j === 3) { this.markWinner(matchMe); return; }
+      if (j === 3) { this.markWinner(matchMe, winningCells); return; }
     }
-   
+
     //check diagonals
-    for (let i = 0; i < 3; i+=2) {
+    for (let i = 0; i < 3; i += 2) {
       const matchMe = game[i * 3];
+      winningCells = '';
       let j;
-      for(j = 0; j < 3; j++) {
+      for (j = 0; j < 3; j++) {
         const index = Math.abs(i - j) * 3 + j;
         if (game[index] === EMPTY || game[index] !== matchMe) break;
+        winningCells += index;
       }
-      if (j === 3) { this.markWinner(matchMe); return; }
+      if (j === 3) { this.markWinner(matchMe, winningCells); return; }
     }
-    
-    if(moves.length === 9) this.markWinner(DRAW);
+
+    if (moves.length === 9) this.markWinner(DRAW, '');
   }
 
-  markWinner(matchMe) {
+  markWinner(matchMe, winningCells) {
     let { xScore, oScore } = this.state;
     if (matchMe === CROSS) xScore++;
     else if (matchMe === NOUGHT) oScore++;
 
-    this.setState({ winner: matchMe, xScore, oScore })
+    this.setState({ winner: matchMe, xScore, oScore, winningCells })
   }
 
   undo() {
@@ -97,7 +105,7 @@ class App extends Component {
       arr[i] = EMPTY;
     }
 
-    this.setState({ game: arr, moves: [], crossActive: true, winner: EMPTY })
+    this.setState({ game: arr, moves: [], crossActive: true, winner: EMPTY, winningCells: '' })
   }
 
 
@@ -115,12 +123,12 @@ class App extends Component {
         <div>
           <div className="ScoreContainer">
             <Score icon={cross} text={`Score: ${this.state.xScore}`} active={this.state.crossActive} />
-            <Score icon={nought} text={`Score: ${this.state.oScore}`} active={!this.state.crossActive}/>
+            <Score icon={nought} text={`Score: ${this.state.oScore}`} active={!this.state.crossActive} />
           </div>
-          <Board game={this.state.game} onClick={this.makeMove} />
+          <Board game={this.state.game} onClick={this.makeMove} winningCells={this.state.winningCells} />
           <div className="ButtonsContainer">
-            <Button text='Undo' onClick={this.undo} active = {isUndo} />
-            <Button text='Restart' onClick={this.restart} active = {true}/>
+            <Button text='Undo' onClick={this.undo} active={isUndo} />
+            <Button text='Restart' onClick={this.restart} active={true} />
           </div>
           {this.state.winner !== EMPTY && <span>Winner is {this.state.winner}</span>}
         </div>
