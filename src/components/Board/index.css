@@ -1,4 +1,5 @@
 .Board {
+    position: relative;
     display: flex;
     flex: 1;
     justify-content: space-between;
@@ -11,3 +12,37 @@
     border: solid;
     border-color: yellowgreen;
 }
+
+.overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5);
+  }
+
+  .overoverlay {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    height: 20%;
+    background-color: rgba(0,0,0,0.75);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .winnerText {
+      color: white;
+      font-size: 2em;
+      margin: 1em;
+  }
+
+  .winnerIcon {      
+      height: 80%;
+      width: auto;
+  }
