@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Score render corectly when passing activity flag 1`] = `
+exports[`Score render corectly for active player 1`] = `
 <div
   className="Score"
   style={
@@ -17,7 +17,7 @@ exports[`Score render corectly when passing activity flag 1`] = `
 </div>
 `;
 
-exports[`Score render corectly when passing activity flag 2`] = `
+exports[`Score render corectly for passive player 1`] = `
 <div
   className="Score"
   style={

@@ -14,10 +14,12 @@ describe('Score', () => {
         expect(component).toMatchSnapshot();
     });
 
-    it('render corectly when passing activity flag', () => {
+    it('render corectly for active player', () => {
         const activeScore = shallow(<Score active = {true} />);
-        expect(activeScore).toMatchSnapshot();
-        
+        expect(activeScore).toMatchSnapshot();       
+    });
+
+    it('render corectly for passive player', () => {        
         const passiveScore = shallow(<Score active = {false} />);
         expect(passiveScore).toMatchSnapshot();       
     });
