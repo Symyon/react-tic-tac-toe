@@ -12,3 +12,18 @@ exports[`Button render correctly without props 1`] = `
   }
 />
 `;
+
+exports[`Button render text correctly with a given value 1`] = `
+<div
+  className="CustomButton"
+  onClick={null}
+  style={
+    Object {
+      "backgroundColor": "rgb(110, 118, 76)",
+      "cursor": "default",
+    }
+  }
+>
+  Button
+</div>
+`;

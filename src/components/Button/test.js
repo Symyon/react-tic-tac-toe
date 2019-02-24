@@ -8,4 +8,9 @@ describe('Button', () => {
 
         expect(component).toMatchSnapshot();
     })
+
+    it('render text correctly with a given value', () => {
+        const component = shallow(<Button text='Button' />);
+        expect(component).toMatchSnapshot();
+    });
 });
