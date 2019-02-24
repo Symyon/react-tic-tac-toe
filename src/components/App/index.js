@@ -122,8 +122,8 @@ class App extends Component {
       <div className="App">
         <div>
           <div className="ScoreContainer">
-            <Score icon={cross} text={`Score: ${this.state.xScore}`} active={this.state.crossActive} />
-            <Score icon={nought} text={`Score: ${this.state.oScore}`} active={!this.state.crossActive} />
+            <Score icon={cross} value={this.state.xScore} active={this.state.crossActive} />
+            <Score icon={nought} value={this.state.oScore} active={!this.state.crossActive} />
           </div>
           <Board game={this.state.game} onClick={this.makeMove} winningCells={this.state.winningCells} winner={this.state.winner} />
           <div className="ButtonsContainer">

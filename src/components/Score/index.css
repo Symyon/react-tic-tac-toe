@@ -11,4 +11,6 @@
 .Icon {
     width: 2em;
     height: auto;
+    padding-left: 2px;
+    padding-right: 2px;
 }
