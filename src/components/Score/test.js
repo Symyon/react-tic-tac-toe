@@ -8,4 +8,9 @@ describe('Score', () => {
 
         expect(component).toMatchSnapshot();
     })
+
+    it('render text correctly with given value', () => {
+        const component = shallow(<Score value={5} />);
+        expect(component).toMatchSnapshot();
+    });
 });
