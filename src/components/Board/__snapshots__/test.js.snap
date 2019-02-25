@@ -7,3 +7,82 @@ exports[`Board render correctly without props 1`] = `
   />
 </div>
 `;
+
+exports[`Board renders vorrectly the overlay when a draw 1`] = `
+<div>
+  <div
+    className="Board"
+  >
+    <div
+      className="overlay"
+    >
+      <div
+        className="overoverlay"
+      >
+        <span
+          className="winnerText"
+        >
+          Draw
+        </span>
+        ;
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Board renders vorrectly the overlay when crosses are winners 1`] = `
+<div>
+  <div
+    className="Board"
+  >
+    <div
+      className="overlay"
+    >
+      <div
+        className="overoverlay"
+      >
+        <span
+          className="winnerText"
+        >
+          Winner
+        </span>
+        <img
+          alt="winner"
+          className="winnerIcon"
+          src="x.png"
+        />
+        ;
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Board renders vorrectly the overlay when noughts are winners 1`] = `
+<div>
+  <div
+    className="Board"
+  >
+    <div
+      className="overlay"
+    >
+      <div
+        className="overoverlay"
+      >
+        <span
+          className="winnerText"
+        >
+          Winner
+        </span>
+        <img
+          alt="winner"
+          className="winnerIcon"
+          src="o.png"
+        />
+        ;
+      </div>
+    </div>
+  </div>
+</div>
+`;
