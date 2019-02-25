@@ -11,7 +11,7 @@ class Board extends Component {
         return (
             <div>
                 <div className="Board">
-                    {game && game.map((item, index) => <Cell key={index} index={index} mark={item} onClick={onClick} markIt={winningCells.includes(index)} />)}
+                    {game && game.map((item, index) => <Cell key={index} index={index} mark={item} onClick={onClick} markIt={winningCells && winningCells.includes(index)} />)}
                     {winner !== undefined && winner !== EMPTY && <div className="overlay">
                         <div className="overoverlay">
                             <span className="winnerText">{winner === DRAW ? 'Draw' : 'Winner'}</span>

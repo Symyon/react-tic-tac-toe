@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import Board from './';
 
 import { NOUGHT, CROSS, EMPTY, DRAW } from '../../constants';
@@ -23,5 +23,10 @@ describe('Board', () => {
     it('renders correctly the overlay when crosses are winners', () => {
         const component = shallow(<Board winner={CROSS} />);
         expect(component).toMatchSnapshot();
+    })
+
+    it('renders an array of cells', () => {
+        const component = render(<Board game={[-1,-1,-1,-1,-1,-1,-1,-1,-1]} />);
+        expect(component.find('div.Cell').length).toEqual(9);
     })
 });
