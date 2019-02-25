@@ -20,6 +20,11 @@ describe('App', () => {
     expect(component.find('div.Score').length).toEqual(2);
   })
 
+  it('renders 2 CustomButton components', () => {
+    const component = render(<App />);
+    expect(component.find('div.CustomButton').length).toEqual(2);
+  })
+
   it('renders 1 Board component', () => {
     const component = render(<App />);
     expect(component.find('div.Board').length).toEqual(1);
