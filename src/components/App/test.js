@@ -36,11 +36,29 @@ describe('App', () => {
     const game = [CROSS, NOUGHT, CROSS];
     const moves = [0, 1, 2];
     const crossActive = true;
-    app.setState({ game: game.slice(0), moves: moves.slice(0), crossActive });    
+    app.setState({ game: game.slice(0), moves: moves.slice(0), crossActive });
     app.instance().undo();
 
     expect(app.state().moves.length === moves.length - 1
       && app.state().crossActive !== crossActive
       && app.state().game[moves.length - 1] === EMPTY).toBeTruthy();
+  })
+
+  it('make a move works', () => {
+    const app = mount(<App />);
+    const game = [CROSS, NOUGHT, CROSS, EMPTY, EMPTY];
+    const moves = [0, 1, 2];
+    const crossActive = true;
+    app.setState({
+      game: game.slice(0),
+      moves: moves.slice(0),
+      crossActive,
+      winner: EMPTY
+    });
+    app.instance().makeMove(3);
+
+    expect(app.state().moves.length === moves.length + 1
+      && app.state().crossActive !== crossActive
+      && app.state().game[3] !== EMPTY).toBeTruthy();
   })
 });
