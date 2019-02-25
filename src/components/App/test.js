@@ -15,7 +15,10 @@ describe('App', () => {
     expect(component).toMatchSnapshot();
   });
 
-  
+  it('renders 2 Score components', () => {
+    const component = render(<App />);
+    expect(component.find('div.Score').length).toEqual(2);
+  })
 
   it('renders 1 Board component', () => {
     const component = render(<App />);
