@@ -24,4 +24,14 @@ describe('Cell', () => {
         const component = shallow(<Cell mark={NOUGHT} />);
         expect(component).toMatchSnapshot();
     })
+
+    it('render correctly when marked as winning', () => {
+        const component = shallow(<Cell markIt={true} />);
+        expect(component).toMatchSnapshot();
+    })
+
+    it('render correctly when marked as not winning', () => {
+        const component = shallow(<Cell markIt={false} />);
+        expect(component).toMatchSnapshot();
+    })
 });

@@ -12,6 +12,30 @@ exports[`Cell render correctly empty 1`] = `
 />
 `;
 
+exports[`Cell render correctly when marked as not winning 1`] = `
+<div
+  className="Cell"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "rgb(87, 90, 72)",
+    }
+  }
+/>
+`;
+
+exports[`Cell render correctly when marked as winning 1`] = `
+<div
+  className="Cell"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "rgb(57, 60, 42)",
+    }
+  }
+/>
+`;
+
 exports[`Cell render correctly with cross 1`] = `
 <div
   className="Cell"
@@ -67,16 +91,5 @@ exports[`Cell render correctly without props 1`] = `
       "backgroundColor": "rgb(87, 90, 72)",
     }
   }
->
-  <img
-    alt="X"
-    src="x.png"
-    style={
-      Object {
-        "height": "100%",
-        "width": "100%",
-      }
-    }
-  />
-</div>
+/>
 `;
