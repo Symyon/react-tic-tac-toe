@@ -8,7 +8,7 @@ exports[`Board render correctly without props 1`] = `
 </div>
 `;
 
-exports[`Board renders vorrectly the overlay when a draw 1`] = `
+exports[`Board renders correctly the overlay when a draw 1`] = `
 <div>
   <div
     className="Board"
@@ -31,7 +31,7 @@ exports[`Board renders vorrectly the overlay when a draw 1`] = `
 </div>
 `;
 
-exports[`Board renders vorrectly the overlay when crosses are winners 1`] = `
+exports[`Board renders correctly the overlay when crosses are winners 1`] = `
 <div>
   <div
     className="Board"
@@ -59,7 +59,7 @@ exports[`Board renders vorrectly the overlay when crosses are winners 1`] = `
 </div>
 `;
 
-exports[`Board renders vorrectly the overlay when noughts are winners 1`] = `
+exports[`Board renders correctly the overlay when noughts are winners 1`] = `
 <div>
   <div
     className="Board"

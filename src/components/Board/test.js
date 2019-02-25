@@ -10,17 +10,17 @@ describe('Board', () => {
         expect(component).toMatchSnapshot();
     })
 
-    it('renders vorrectly the overlay when a draw', () => {
+    it('renders correctly the overlay when a draw', () => {
         const component = shallow(<Board winner={DRAW} />);
         expect(component).toMatchSnapshot();
     })
 
-    it('renders vorrectly the overlay when noughts are winners', () => {
+    it('renders correctly the overlay when noughts are winners', () => {
         const component = shallow(<Board winner={NOUGHT} />);
         expect(component).toMatchSnapshot();
     })
 
-    it('renders vorrectly the overlay when crosses are winners', () => {
+    it('renders correctly the overlay when crosses are winners', () => {
         const component = shallow(<Board winner={CROSS} />);
         expect(component).toMatchSnapshot();
     })

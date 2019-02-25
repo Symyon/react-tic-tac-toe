@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="App"
+>
+  <div>
+    <div
+      className="ScoreContainer"
+    >
+      <Score
+        active={true}
+        icon="x.png"
+        value={0}
+      />
+      <Score
+        active={false}
+        icon="o.png"
+        value={0}
+      />
+    </div>
+    <Board
+      game={
+        Array [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+        ]
+      }
+      onClick={[Function]}
+      winner={-1}
+      winningCells=""
+    />
+    <div
+      className="ButtonsContainer"
+    >
+      <Button
+        onClick={null}
+        text="Undo"
+      />
+      <Button
+        onClick={[Function]}
+        text="Restart"
+      />
+    </div>
+  </div>
+</div>
+`;
