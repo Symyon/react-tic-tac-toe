@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cell render correctly empty 1`] = `
+<div
+  className="Cell"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "rgb(87, 90, 72)",
+    }
+  }
+/>
+`;
+
+exports[`Cell render correctly with cross 1`] = `
+<div
+  className="Cell"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "rgb(87, 90, 72)",
+    }
+  }
+>
+  <img
+    alt="X"
+    src="x.png"
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Cell render correctly with nought 1`] = `
+<div
+  className="Cell"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "rgb(87, 90, 72)",
+    }
+  }
+>
+  <img
+    alt="O"
+    src="o.png"
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Cell render correctly without props 1`] = `
+<div
+  className="Cell"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "rgb(87, 90, 72)",
+    }
+  }
+>
+  <img
+    alt="X"
+    src="x.png"
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  />
+</div>
+`;
