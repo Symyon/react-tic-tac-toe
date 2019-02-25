@@ -35,11 +35,10 @@ class App extends Component {
     moves.push(index);
     game[index] = crossActive ? CROSS : NOUGHT;
     this.setState({ game, moves, crossActive: !crossActive })
-    if (moves.length >= 3) this.checkGameStatus();
+    if (moves.length >= 3) this.checkGameStatus(this.state.game, this.state.moves);
   }
 
-  checkGameStatus() {
-    const { game, moves } = this.state;
+  checkGameStatus(game, moves) {
 
     let winningCells;
     //check rows   

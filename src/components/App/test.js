@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow, render } from 'enzyme';
+import { shallow, render, mount } from 'enzyme';
 import App from '.';
+import { EMPTY, CROSS, NOUGHT } from '../../constants';
 
 describe('App', () => {
   it('renders without crashing', () => {
@@ -28,5 +29,18 @@ describe('App', () => {
   it('renders 1 Board component', () => {
     const component = render(<App />);
     expect(component.find('div.Board').length).toEqual(1);
+  })
+
+  it('undo works', () => {
+    const app = mount(<App />);
+    const game = [CROSS, NOUGHT, CROSS];
+    const moves = [0, 1, 2];
+    const crossActive = true;
+    app.setState({ game: game.slice(0), moves: moves.slice(0), crossActive });    
+    app.instance().undo();
+
+    expect(app.state().moves.length === moves.length - 1
+      && app.state().crossActive !== crossActive
+      && app.state().game[moves.length - 1] === EMPTY).toBeTruthy();
   })
 });
