@@ -3,7 +3,6 @@
 exports[`Button render correctly without props 1`] = `
 <div
   className="CustomButton"
-  onClick={null}
   style={
     Object {
       "backgroundColor": "rgb(110, 118, 76)",
@@ -16,7 +15,6 @@ exports[`Button render correctly without props 1`] = `
 exports[`Button render text correctly with a given value 1`] = `
 <div
   className="CustomButton"
-  onClick={null}
   style={
     Object {
       "backgroundColor": "rgb(110, 118, 76)",
@@ -26,4 +24,30 @@ exports[`Button render text correctly with a given value 1`] = `
 >
   Button
 </div>
+`;
+
+exports[`Button renders correctly for a null onClick function 1`] = `
+<div
+  className="CustomButton"
+  onClick={null}
+  style={
+    Object {
+      "backgroundColor": "rgb(110, 118, 76)",
+      "cursor": "default",
+    }
+  }
+/>
+`;
+
+exports[`Button renders correctly for an existing onClick function 1`] = `
+<div
+  className="CustomButton"
+  onClick={[MockFunction]}
+  style={
+    Object {
+      "backgroundColor": "rgb(157, 167, 111)",
+      "cursor": "pointer",
+    }
+  }
+/>
 `;

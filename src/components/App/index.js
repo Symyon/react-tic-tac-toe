@@ -127,9 +127,8 @@ class App extends Component {
           </div>
           <Board game={this.state.game} onClick={this.makeMove} winningCells={this.state.winningCells} winner={this.state.winner} />
           <div className="ButtonsContainer">
-          <Button />
-            <Button text='Undo' onClick={this.undo} active={isUndo} />
-            <Button text='Restart' onClick={this.restart} active={true} />
+            <Button text='Undo' onClick={isUndo ? this.undo : null} />
+            <Button text='Restart' onClick={this.restart} />
           </div>
         </div>
       </div>

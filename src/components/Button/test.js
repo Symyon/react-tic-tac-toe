@@ -13,4 +13,15 @@ describe('Button', () => {
         const component = shallow(<Button text='Button' />);
         expect(component).toMatchSnapshot();
     });
+
+    it('renders correctly for an existing onClick function', () => {
+        const onClick = jest.fn();
+        const component = shallow(<Button onClick={onClick} />);
+        expect(component).toMatchSnapshot();
+    });
+
+    it('renders correctly for a null onClick function', () => {
+        const component = shallow(<Button onClick={null} />);
+        expect(component).toMatchSnapshot();
+    });
 });
