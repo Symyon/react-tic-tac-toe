@@ -129,5 +129,16 @@ describe('App', () => {
     expect(matchMe === NOUGHT && winningCells !== '').toBeTruthy();
   })
 
-  
+  it('checks the game status correctly when is a draw', () => {
+    const app = mount(<App />);
+    const drawGame = [
+      NOUGHT, CROSS, CROSS,
+      CROSS, NOUGHT, NOUGHT,
+      NOUGHT, CROSS, CROSS];
+    const moves = [1, 0, 2, 4, 3, 5, 7, 6, 8];
+
+    const { matchMe, winningCells } = app.instance().checkGameStatus(drawGame, moves)
+
+    expect(matchMe === DRAW && winningCells === '').toBeTruthy();
+  })
 });
