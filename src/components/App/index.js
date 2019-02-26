@@ -35,7 +35,11 @@ class App extends Component {
     moves.push(index);
     game[index] = crossActive ? CROSS : NOUGHT;
     this.setState({ game, moves, crossActive: !crossActive })
-    if (moves.length >= 3) this.checkGameStatus(this.state.game, this.state.moves);
+
+    if (moves.length >= 3) {
+      const { matchMe, winningCells } = this.checkGameStatus(this.state.game, this.state.moves);
+      this.markWinner(matchMe, winningCells);
+    }
   }
 
   checkGameStatus(game, moves) {
@@ -51,7 +55,7 @@ class App extends Component {
         if (game[index] === EMPTY || game[index] !== matchMe) break;
         winningCells += index;
       }
-      if (j === 3) { this.markWinner(matchMe, winningCells); return; }
+      if (j === 3) return { matchMe, winningCells };
     }
 
     //check columns
@@ -64,7 +68,7 @@ class App extends Component {
         if (game[index] === EMPTY || game[index] !== matchMe) break;
         winningCells += index;
       }
-      if (j === 3) { this.markWinner(matchMe, winningCells); return; }
+      if (j === 3) return { matchMe, winningCells };
     }
 
     //check diagonals
@@ -77,10 +81,10 @@ class App extends Component {
         if (game[index] === EMPTY || game[index] !== matchMe) break;
         winningCells += index;
       }
-      if (j === 3) { this.markWinner(matchMe, winningCells); return; }
+      if (j === 3) return { matchMe, winningCells };
     }
 
-    if (moves.length === 9) this.markWinner(DRAW, '');
+    return { matchMe: moves.length === 9 ? DRAW : EMPTY, winningCells: '' };
   }
 
   markWinner(matchMe, winningCells) {

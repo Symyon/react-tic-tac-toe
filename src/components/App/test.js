@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, render, mount } from 'enzyme';
 import App from '.';
-import { EMPTY, CROSS, NOUGHT } from '../../constants';
+import { EMPTY, CROSS, NOUGHT, DRAW } from '../../constants';
 
 describe('App', () => {
   it('renders without crashing', () => {
@@ -99,11 +99,22 @@ describe('App', () => {
       && app.state().winningCells === '').toBeTruthy();
   })
 
-  it('marks a winner corretly', () => {
+  it('marks a winner correctly', () => {
     const app = mount(<App />);
     const score = app.state().xScore;
     app.instance().markWinner(CROSS, null);
 
     expect(app.state().winner === CROSS && app.state().xScore === score + 1).toBeTruthy();
+  })
+
+  it('checks correctly for CROSS line winner and marked cells', () => {
+    const app = mount(<App />);
+    const game = [
+      CROSS, CROSS, CROSS,
+      NOUGHT, NOUGHT, EMPTY,
+      EMPTY, EMPTY, EMPTY];
+
+    const { matchMe, winningCells } = app.instance().checkGameStatus(game, []);
+    expect(matchMe === CROSS && winningCells !== '').toBeTruthy();
   })
 });
