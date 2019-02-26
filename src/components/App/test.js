@@ -69,16 +69,16 @@ describe('App', () => {
     let arrayClean = true;
     const arr = app.state().game;
     for (let i = 0; i < 9; i++) {
-      if(arr[i] !== EMPTY) {
+      if (arr[i] !== EMPTY) {
         arrayClean = false;
         break;
       }
     }
 
     expect(arrayClean && app.state().moves.length === 0
-    && app.state().crossActive === true
-    && app.state().winner === EMPTY
-    && app.state().winningCells === '').toBeTruthy();
+      && app.state().crossActive === true
+      && app.state().winner === EMPTY
+      && app.state().winningCells === '').toBeTruthy();
   })
 
   it('app initializes with a correct state', () => {
@@ -87,15 +87,23 @@ describe('App', () => {
     let arrayClean = true;
     const arr = app.state().game;
     for (let i = 0; i < 9; i++) {
-      if(arr[i] !== EMPTY) {
+      if (arr[i] !== EMPTY) {
         arrayClean = false;
         break;
       }
     }
 
     expect(arrayClean && app.state().moves.length === 0
-    && app.state().crossActive === true
-    && app.state().winner === EMPTY
-    && app.state().winningCells === '').toBeTruthy();
+      && app.state().crossActive === true
+      && app.state().winner === EMPTY
+      && app.state().winningCells === '').toBeTruthy();
+  })
+
+  it('marks a winner corretly', () => {
+    const app = mount(<App />);
+    const score = app.state().xScore;
+    app.instance().markWinner(CROSS, null);
+
+    expect(app.state().winner === CROSS && app.state().xScore === score + 1).toBeTruthy();
   })
 });
