@@ -26,7 +26,16 @@ describe('Board', () => {
     })
 
     it('renders an array of cells', () => {
-        const component = render(<Board game={[-1,-1,-1,-1,-1,-1,-1,-1,-1]} />);
+        const component = render(<Board game={[-1, -1, -1, -1, -1, -1, -1, -1, -1]} />);
         expect(component.find('div.Cell').length).toEqual(9);
+    })
+
+    it('click on a board cell will call board click function', () => {
+        const clickFn = jest.fn();
+        const game = [EMPTY, EMPTY, EMPTY];
+        const board = shallow(<Board game={game} onClick={clickFn} />)
+
+        board.find('Cell').first().simulate('click');
+        expect(clickFn).toHaveBeenCalled();
     })
 });
