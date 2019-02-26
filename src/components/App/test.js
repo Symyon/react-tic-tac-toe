@@ -117,4 +117,17 @@ describe('App', () => {
     const { matchMe, winningCells } = app.instance().checkGameStatus(game, []);
     expect(matchMe === CROSS && winningCells !== '').toBeTruthy();
   })
+
+  it('checks correctly for NOUGHT diagonal winner and marked cells', () => {
+    const app = mount(<App />);
+    const game = [
+      NOUGHT, CROSS, CROSS,
+      CROSS, NOUGHT, EMPTY,
+      EMPTY, CROSS, NOUGHT];
+
+    const { matchMe, winningCells } = app.instance().checkGameStatus(game, []);
+    expect(matchMe === NOUGHT && winningCells !== '').toBeTruthy();
+  })
+
+  
 });
