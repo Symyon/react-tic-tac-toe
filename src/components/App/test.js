@@ -61,4 +61,23 @@ describe('App', () => {
       && app.state().crossActive !== crossActive
       && app.state().game[3] !== EMPTY).toBeTruthy();
   })
+
+  it('restarts correctly', () => {
+    const app = mount(<App />);
+    app.instance().restart();
+
+    let arrayClean = true;
+    const arr = app.state().game;
+    for (let i = 0; i < 9; i++) {
+      if(arr[i] !== EMPTY) {
+        arrayClean = false;
+        break;
+      }
+    }
+
+    expect(arrayClean && app.state().moves.length === 0
+    && app.state().crossActive === true
+    && app.state().winner === EMPTY
+    && app.state().winningCells === '').toBeTruthy();
+  })
 });
