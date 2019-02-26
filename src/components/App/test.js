@@ -76,6 +76,22 @@ describe('App', () => {
     expect(app.state().moves.length).toBe(moves.length);
   })
 
+  it('make a move will not work if we have a winner', () => {
+    const app = mount(<App />);
+    const game = [CROSS, NOUGHT, CROSS, EMPTY, EMPTY];
+    const moves = [0, 1, 2];
+
+    app.setState({
+      game: game.slice(0),
+      moves: moves.slice(0),
+      winner: CROSS
+    });
+
+    app.instance().makeMove(3);
+    expect(app.state().moves.length).toBe(moves.length);
+  })
+
+
   it('restarts correctly', () => {
     const app = mount(<App />);
     app.instance().restart();
