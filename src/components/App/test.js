@@ -44,7 +44,7 @@ describe('App', () => {
       && app.state().game[moves.length - 1] === EMPTY).toBeTruthy();
   })
 
-  it('make a move works', () => {
+  it('make a move works on an empty cell', () => {
     const app = mount(<App />);
     const game = [CROSS, NOUGHT, CROSS, EMPTY, EMPTY];
     const moves = [0, 1, 2];
@@ -60,6 +60,20 @@ describe('App', () => {
     expect(app.state().moves.length === moves.length + 1
       && app.state().crossActive !== crossActive
       && app.state().game[3] !== EMPTY).toBeTruthy();
+  })
+
+  it('make a move will not work on a marked cell', () => {
+    const app = mount(<App />);
+    const game = [CROSS, NOUGHT, CROSS, EMPTY, EMPTY];
+    const moves = [0, 1, 2];
+
+    app.setState({
+      game: game.slice(0),
+      moves: moves.slice(0),
+    });
+
+    app.instance().makeMove(1);
+    expect(app.state().moves.length).toBe(moves.length);
   })
 
   it('restarts correctly', () => {
