@@ -34,4 +34,12 @@ describe('Cell', () => {
         const component = shallow(<Cell markIt={false} />);
         expect(component).toMatchSnapshot();
     })
+
+    it('click on a cell will call props onClick', () => {
+        const clickFn = jest.fn();
+        const cell = shallow(<Cell onClick={clickFn} />)
+
+        cell.simulate('click');
+        expect(clickFn).toHaveBeenCalled();
+    })
 });
