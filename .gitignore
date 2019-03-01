@@ -4,7 +4,7 @@
 /node_modules
 
 # testing
-# /coverage
+/coverage
 
 # production
 /build
@@ -27,7 +27,7 @@ yarn-error.log*
 .pnp.js
 
 # testing
-# /coverage
+/coverage
 
 # production
 /build
